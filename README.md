@@ -14,7 +14,7 @@
 
 
 框架罪行录：
-[1.label encoding&one-hot encoding的几种方法](训练前1-标签-Label encoding&One hot encoding.md)
+[1.label encoding&one-hot encoding的几种方法](训练前1.md)
 
 
 碎碎念系列：
