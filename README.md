@@ -14,8 +14,10 @@
 
 
 框架罪行录：
+
 [1.label encoding&one-hot encoding的几种方法](训练前1.md)
 
 
 碎碎念系列：
+
 施工中~~~
