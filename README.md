@@ -12,6 +12,8 @@
 
   [2.Keras I/O 源代码初探](git2.md)
 
+  [3.RNN的几点trick（填坑中）](rnn_trick1.md)
+  
 碎碎念系列：
 
 施工中~~
