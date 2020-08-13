@@ -1,0 +1,45 @@
+## rnn中的几点tricks
+
+1. 从计算图分离隐含状态
+
+在模型训练的每次迭代中，当前批量序列的初始隐含状态来自上一个相邻批量序列的输出隐含状态。为了使模型参数的梯度计算只依赖当前的批量序列，从而减小每次迭代的计算开销，我们可以使用`detach`函数来将隐含状态从计算图分离出来。
+
+```
+def detach(state):
+    if isinstance(state, (tuple, list)):
+        state = [i.detach() for i in state]
+    else:
+        state = state.detach()
+    return state
+```
+
+> 如果不分离隐含状态，则第t次的反向传播会通过$\mathbf{H}_{t-1}$ 传回第t-1次的hidden layer，造成计算量上升
+
+* 在pytorch中形容如下：
+
+  > `torch.Tensor` 是这个包的核心类。如果设置它的属性 `.requires_grad` 为 `True`，那么它将会追踪对于该张量的所有操作。当完成计算后可以通过调用 `.backward()`，来自动计算所有的梯度。这个张量的所有梯度将会自动累加到`.grad`属性.
+  >
+  > 要阻止一个张量被跟踪历史，可以调用 `.detach()` 方法将其与计算历史分离，并阻止它未来的计算记录被跟踪。
+
+
+
+2. 困惑度（perplexity)
+
+  对rnn的loss，有交叉熵损失函数：
+
+  $$\text{loss} = -\frac{1}{N} \sum_{i=1}^N \log p_{\text{target}_i}$$
+  其中$N$是预测的字符总数，$p_{\text{target}_i}$是在第$i$个预测中**真实的下个字符**被预测的概率。
+
+  而困惑度**ppl**，可以简单的认为就是对交叉熵做exp运算使得数值更好读。
+
+  $ ppl = e^{loss}$
+
+  > eg. 词典为[a,b,c]，下一个 gt 为 target=c，则有$p_{\text{target}_c}$ :
+  >
+  > 1. $p_{\text{target}_c}$ =1,完美  $ppl= 1$
+  >
+  > 2. $p_{\text{target}_c}$ =0，完全错误  $ppl= +∞$
+  > 3. $p_{\text{target}_c}$ = 1/3，随机baseline。 $ppl= 3$
+  >
+  > 对于本例，只有 $ppl < 3$ ，即**困惑度小于字典容量**时可以认为模型有用
+
