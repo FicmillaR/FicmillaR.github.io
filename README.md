@@ -23,14 +23,14 @@ Awesome blogs/gits for object detection:
 > Subtasks like Face-Detection/Person Head Detection/... are also included.
 > many study resources for AI
 
-2. https://github.com/amusi/awesome-object-detection
+2.[amusi_awesome_object_detection](https://github.com/amusi/awesome-object-detection)
 > paper collections based on handong1587
 
-3. https://github.com/ultralytics/yolov5
+3. [ultralytics_yolov5](https://github.com/ultralytics/yolov5)
 > wellknowns as release YOLOv5/v4 and v3 on pytorch
 > doubt on the v5 personally
 
-4. https://github.com/hoya012/deep_learning_object_detection
+4. [hoya012_object_detection_ranking](https://github.com/hoya012/deep_learning_object_detection)
 > update rapidly but not all the papers I need are included
 
 
