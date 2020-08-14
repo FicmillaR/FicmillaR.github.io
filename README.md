@@ -17,7 +17,7 @@
 
 
 Awesome blogs/gits for object detection:
-1. https://handong1587.github.io/deep_learning/2015/10/09/object-detection.html
+1. (https://handong1587.github.io/deep_learning/2015/10/09/object-detection.html)
 > Including papers of Single-Shot/Two-Stage Object detection,
 > Tricks like Anchor-free/NMS/... are included,
 > Subtasks like Face-Detection/Person Head Detection/... are also included.
