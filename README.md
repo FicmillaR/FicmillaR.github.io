@@ -14,7 +14,26 @@
 
   [3.RNN的几点trick（填坑中）](rnn_trick1.md)
   
-碎碎念系列：
 
+
+Awesome blogs/gits for object detection:
+1. https://handong1587.github.io/deep_learning/2015/10/09/object-detection.html
+> Including papers of Single-Shot/Two-Stage Object detection,
+> Tricks like Anchor-free/NMS/... are included,
+> Subtasks like Face-Detection/Person Head Detection/... are also included.
+> many study resources for AI
+
+2. https://github.com/amusi/awesome-object-detection
+> paper collections based on handong1587
+
+3. https://github.com/ultralytics/yolov5
+> wellknowns as release YOLOv5/v4 and v3 on pytorch
+> doubt on the v5 personally
+
+4. https://github.com/hoya012/deep_learning_object_detection
+> update rapidly but not all the papers I need are included
+
+
+脑洞系列：
 施工中~~
   
