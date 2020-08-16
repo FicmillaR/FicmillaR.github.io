@@ -39,8 +39,8 @@
 > update rapidly but not all the papers I need are included
  
 5. [siffai](http://sffai.com/)
-> 人工智能前沿学生论坛。自2018年9月16日举办第一期，每周一期学术分享交流
- 
+> 人工智能前沿学生论坛。自2018年9月16日，每周一期
+> 报告内容详见B站
  
  
  
