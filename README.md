@@ -2,7 +2,7 @@
 ### 你将在这篇博客中读到：
 
 1. 文章翻译（EN/JP -> CN）
-2. 大牛folk
+2. 大牛fork
 3. 菜鸟爬坡
 4. 直击灵魂
 
@@ -13,9 +13,13 @@
 
   [2.Keras I/O 源代码初探](git2.md)
 
-  [3.RNN的几点trick（填坑中）](rnn_trick1.md)
+  [3.普通RNN的2个trick（填坑中）](rnn_trick1.md)
    
- 
+
+   
+### Sloth is good, keep forking make you rich:
+
+  [1.会被打的C++技巧](cpp_1.md)
  
 
 
@@ -23,10 +27,10 @@
 ### Awesome blogs/gits for object detection:
 
 1. [handong1587](https://handong1587.github.io/deep_learning/2015/10/09/object-detection.html)
-> paper collection for Object Detection,
-> Tricks for Object Detection,
-> Subtasks like Face-Detection/Person Head Detection/... are also included.
-> many study resources for AI/Linux/...
+> paper collection for Object Detection,/n
+> Tricks for Object Detection,/n
+> Subtasks like Face-Detection/Person Head Detection/... are also included./n
+> many study resources for AI/Linux/.../n
 
 2. [amusi_awesome_object_detection](https://github.com/amusi/awesome-object-detection)
 > paper collections based on handong1587
