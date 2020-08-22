@@ -1,10 +1,12 @@
 # Keras 中I/O方法小引
 
-keras有大量不在文档内的I/O方法
 
-本文部分翻译自 [Jason Brownlee](https://machinelearningmastery.com/author/jasonb/) 的博客，原文：
-
+本文idea**来自于** [Jason Brownlee 大神](https://machinelearningmastery.com/author/jasonb/) 的keras入门博客，原文：
 https://machinelearningmastery.com/how-to-load-convert-and-save-images-with-the-keras-api/
+
+
+## 正文
+keras有大量不在文档内的I/O方法
 
 完成本教程后，您将知道：
 
