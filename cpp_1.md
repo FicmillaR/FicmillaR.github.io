@@ -412,7 +412,7 @@ int main(int argc, char **argv) {
 ```
 类函数引用修饰符 (c++11)
 不同于 const，noexcept 这样仅修饰类方法本身行为的修饰符，& 和 && 修饰符会根据 *this 是左值还是右值引用来选择合适的重载。
-
+```
 struct echoer {
     void echo() const & {
         cout << "I have long live!\n";
@@ -430,9 +430,10 @@ int main() {
 // 输出
 // I have long live!
 // I am dying!
+```
 类命名空间操作符 (c++98)
 只有子类型的指针，如何调用父类型的方法？用命名空间。
-
+```
 struct Father {
     virtual void say() {
         cout << "hello from father\n";
@@ -460,9 +461,10 @@ int main() {
 // hello from mother
 // hello from derived1
 // hello from father
+```
 构造器委托 (c++11)
 可以使用和继承类相同的语法在一个构造函数中调用另外一个构造函数：
-
+```
 struct CitizenRecord {
     string first, middle, last;
     CitizenRecord(string first_, string middle_, string last_)
@@ -479,11 +481,12 @@ struct CitizenRecord {
     CitizenRecord(CitizenRecord &&o)
         : CitizenRecord{move(o.first), move(o.middle), move(o.last)} {}
 };
+```
 这个特性有时可以适量减少代码重复，或者转发默认参数。
 
 自定义枚举存储类型 (c++11)
 C 时代的枚举中定义中的整形都必须是 int，在 C++ 中可以自定义这些类型：
-
+```
 enum class sizes : size_t {
     ZERO    = 0,
     LITTLE  = 1ULL << 10,
@@ -495,11 +498,12 @@ enum class sizes : size_t {
 int main() {
     cout << sizeof sizes::JUMBO << endl; // 8
 }
+```
 其中 sizes::ZERO 这些常量都持有 size_t 类型。顺便一提 enum 和 enum class 的区别是前者的作用域是全局，后者则需要加上 sizes::.
 
 模板联合 (c++98)
 联合也是 C++ 的类，也支持方法，构造和析构，同样还有模板参数。
-
+```
 template<class T, class U>
 union one_of {
 private:
@@ -517,11 +521,12 @@ int main() {
     u.right_cast() = 1LL << 32;
     cout << u.right_cast() << endl;  // 4294967296
 }
+```
 一点需要注意的是，union 的成员必须是 "trivial" 的，也就是无需显式构造函数，否则轻则编译失败，重则 UB (未定义行为)。
 
 模板位域 (c++98)，模板 align (c++11)
 你可能很熟悉 C/C++ 的位域特性，但是你知道位域可以写进模板吗？
-
+```
 template<size_t I, size_t J>
 struct some_bits {
     int32_t a : I, b : I;
@@ -541,8 +546,9 @@ int main() {
 // b: -128
 // c: -1
 // total size: 4
+```
 与此相似，C++11 的 alignas 也可以参与模板：
-
+```
 template<size_t Size>
 struct alignas(Size) empty_space {};
 
@@ -550,9 +556,10 @@ int main() {
     empty_space<64> pad;
     cout << sizeof pad << endl; // 64
 }
+```
 类成员指针 (c++98)
 正如 int(*)(int, int) 代表一个接受两个整形返回一个整形的函数指针，对于一个类型 T，int(T::*)(int, int) 表示一个非静态的类成员函数的类型。这是因为这种函数总会有一个隐式的 this 指针作为第一个参数，所以我们需要使用不同的语法来区分它们。
-
+```
 struct echoer {
     string name;
     void echo1(string &c) const {
@@ -584,6 +591,7 @@ int main() {
 // alice! I have long/short live!
 // alice! I have long/short live!
 // I'm valencia. hello mia!
+```
 成员指针和函数指针是实现 traits 必不可少的。
 
 返回值后置 (c++11)
@@ -593,14 +601,15 @@ const auto add = [](int a, int b) -> int { // 返回类型为 int
     return a + b;
 };
 以及在一般的函数中表示返回类型依赖于参数：
-
+```
 template<class T>
 auto serialize_object(T &obj) -> decltype(obj.serialize()) {
 // 返回类型为 obj.serialize() 的类型
     return obj.serialize();
 }
+```
 一般不为人知的是，后置返回值还可以简化函数指针的写法。
-
+```
 int add(int a, int b) { return a + b; }
 int mul(int a, int b) { return a * b; }
 auto produce(int op) -> auto (*)(int, int) -> int { // 声明后置
@@ -617,37 +626,42 @@ int main() {
     producer_t ptr {&produce};
     cout << ptr(0)(1, 2) << endl; // 3
 }
+```
 类成员函数也类似地可以这样写。在 C++14 中函数声明的返回值可以只写 auto 来让编译器自动推导返回类型了。
 
 因为函数声明 = 后置返回值的函数声明，我们可以在模板参数里也使用这个语法，例如 std::function：
-
+```
 const function<auto (int, int) -> int> factorial
     = [&](int n, int acc) {
     return n == 1 ? acc : factorial(n-1, acc * n);
 };
 cout << factorial(5, 1) << endl; // 120
+```
 不求值表达式和编译期常量 (c++98)
 在 C 时代就有仅存在于编译期的表达式。在程序编译运行后，这些代码就被删除，替换成常量了。比如常见的 sizeof 运算符
-
+```
 int count = 0;
 cout << sizeof(count++) << endl; // 4
 cout << count << endl;           // 0
+```
 因为 sizeof(count++) 直接在编译期被替换成了 4，其所原本应该具有的副作用也会没有作用。
 在 C++11 中引入了 decltype，它和 noexcept, sizeof 操作符相同，仅存在于编译时期。而这个操作符的作用是获得一个表达式的类型，譬如如此：
-
+```
 decltype(new int[10]) ptr {};        // 等同于 int *ptr = nullptr; 根本没有内存被分配！
 decltype(int{} * double{}) value {}; // 只是声明一个变量，这个变量的类型是 int 乘 double 的类型
                                      // 具体是什么类型我自己不知道
+```
 与其一同来临的还有 declval 等。同时还有 constexpr 表达式，可以保证表达式一定会在编译期内计算完毕，不拖延到运行时。
-
+```
 int constexpr fib(int n) {
     return n == 0 ? 0 : n == 1 ? 1 : fib(n-1) + fib(n-2);
 }
 int main() {
     int constexpr x = fib(20); // 完全等同于 x = 6765！运行程序时根本不会再去计算
 }
+```
 实际上于此我们可以解释凭什么有的函数没有定义就能跑：
-
+```
 template<int v> struct i32 { static constexpr int value = v; };
 template<int v> i32<v * 2 + 1> weird_func(i32<v>);
 i32<0> weird_func(...);
@@ -656,11 +670,12 @@ int main() {
     cout << decltype(weird_func(i32<7>{}))::value << endl; // 15
     cout << decltype(weird_func(7))::value << endl;        // 0
 }
+```
 因为它们根本没跑。
 
 decltype(auto) (c++14)
 之前讲过 auto 可以作为函数的返回值来自动推导，不过对于 auto 和 decltype(auto)，虽然大多数情况下后者是累赘，也存在两者意义不同情况：
-
+```
 auto incr1(int &i) { ++i; return i; } // 返回: int (拷贝)
 decltype(auto) incr2(int &i) { ++i; return i; } // 返回: int&
 
@@ -669,11 +684,12 @@ int main() {
     // cout << incr1(incr1(a)) << endl;  // 报错
     cout << incr2(incr2(b)) << endl;     // 输出 2
 }
+```
 auto 会看所要推导的变量原生类型 T，而 decltype(auto) 会推导出变量的实际类型 T& 或是 T&&。
 
 引用折叠和万能引用 (universal reference) (c++11)
 T&& 不一定是 T 的右值引用，它既有可能是左值引用，也有可能是右值引用，但一定不是拷贝原值。
-
+```
 int val = 0;
 int &ref = val;
 const int &cref = val;
@@ -683,8 +699,9 @@ auto s1 = ref;      // 拷贝了一个 int！
 auto &&t1 = ref;    // int& &&        = int&
 auto &&t2 = cref;   // const int& &&  = const int&
 auto &&t3 = 0;      // int&& &&       = int&&
+```
 当遇到需要推导类型的情况，被推导的 auto 类型会与 && 相结合，按照以上的规则得出总的类型。因为这个特性可以不用拷贝且可以保持变量的原有引用类型，它常和移动构造函数配合进行所谓的“完美转发”：
-
+```
 struct CitizenRecord {
     string first, middle, last;
     template<class F, class M, class L>
@@ -694,11 +711,12 @@ struct CitizenRecord {
     CitizenRecord(F &&first_, L &&last_)
         : CitizenRecord{forward<F>(first_), "", forward<L>(last_)} {}
 };
+```
 以上就相当于一次性把 &, const &, && 的重载都写了。
 
 显式模板初始化 (c++98)
 大家都知道模板只在编译时存在。如果一个模板定义从来没有被使用过的话，那么它就没有实例，相当于从来没有定义过模板。所以我们不能把模板的实现和声明分别放在实现文件和头文件中。不过我们可以显式地告诉编译器实例化部分模板：
-
+```
 // genlib.hpp
 #pragma once
 template<class T> T my_max(T a, T b);
@@ -717,13 +735,14 @@ int main() {
     cout << my_max(4.5, 5.5) << endl;  // 5.5
     // cout << my_max(4, 5.5) << endl; // 错误：没有对应的重载
 }
+```
 在这里我在 genlip.cpp 定义了函数模板并且指定生成了两个实例，这样它们的符号就可见于外部，连接器就可以找到相应的定义。另外一个单元 user.cpp 即可引用相应的函数。
 
 模板模板参数 (template template) (c++98)
 以及它的兄弟姐妹模板x3参数，模板x4参数，......
 
 初学者大都熟悉模板的类型参数 (template<class>) 和非类型参数 (template<auto>)，不过对于模板模板参数可能会很不熟悉，因为需要这个特性的地方很少。所谓的模板模板参数实际上就表示参数本身就是个模板，比如 std::vector 是一个模板类。如果要把它传入一个接受普通的模板参数的模板中，我们只能去实例化它，例如传入 std::vector<int>。对于模板模板参数，可以直接传入这个模板类 std::vector：
-
+```
 template<template<class...> class GenericContainer>
 struct Persons {
     GenericContainer<int> ids;
@@ -735,10 +754,11 @@ int main() {
     ps.ids.emplace_back(1);
     ps.people.emplace_back(Person{"alice"});
 }
+```
 在这里 GenericContainer 就是模板模板，我们不仅可以使用 vector 来初始化 Persons，还可以使用任何 STL 的容器模板类。
 
 因为参数可以套娃了，所以模板也有自己所谓的“高阶函数”
-
+```
 // “变量”类型
 template<int v> struct i32 {
     using type = i32;
@@ -761,9 +781,11 @@ int main() {
     using num = i32<7>;
     cout << add3::func<num>::value << endl; // 9
 }
+```
+
 class template deduction guide (CTAD) (c++17)
 从 C++17 开始，在初始化模板类的时候可以不用标注模板参数，如这样：
-
+```
 vector vec1 {1,2,3,4,6};        // 等同于 vector<int>
 vector vec2 {"hello", "alice"}; // 等同于 vector<const char *>
 相应的类型会被自动推导。除了使用编译器默认的设置，我们可以通过 deduction guide 定义自己的推导规则。之所以提及它，是因为这是一个大家可能会遇到的陌生语法：
@@ -790,11 +812,12 @@ int main() {
     bad_wrapper p {&w};      // bad_wrapper<ptr_wrapper>
     cout << p.thing.ptr << endl;    // 140723957134752
 }
+```
 当使用 {} 初始化对象时，编译器会查看大括号内参数的类型，如果参数类型符合推导规则的左侧，则编译器会按照箭头右侧的规则来实例化模板类。当然，这需要箭头右侧的表达式在被代入后有效，而且需要类型要可以被实际的参数构造。(https://en.cppreference.com/w/cpp/language/class_template_argument_deduction)
 
 递归模板 (c++98)
 模板在一定程度上就是编译期的函数，支持递归是理所应当的。在早期，这个高级学究的 zhuangbi 利器。利用类的继承和模板的特化就可以实现很多递归和匹配操作。下面是一个不用内建数组实现的数组功能：
-
+```
 // 要先生成 长度为 Size 的数组，则要先在前面生成长度为 Size-1 的数组
 template<class T, size_t Size> struct flex_array : flex_array<T, Size-1> {
     private: T v;
@@ -809,9 +832,11 @@ int main() {
     flex_array<unsigned, 4> arr;
     cout << sizeof arr << endl;  // 16
 }
+```
+
 动态类型信息 RTTI (c++98)
 依赖虚函数，dynamic_cast 等工具我们可以在程序运行时获得类型的信息并且检查。当重载 = 算符的时候，我们要小心。
-
+```
 class Base {
 public:
     virtual Base &operator=(const Base&) { return *this; }
@@ -835,9 +860,10 @@ int main() {
     Base *p2 = new Derived1{};
     *p2 = *p1;  // exception: type mixed! passed type: 4Base
 }
+```
 静态多态和静态内省 (c++98)
 动态类型信息和虚函数等方便使用，只不过也会造成运行时的损耗。通过递归的模板，我们有 CRTP 设计模式来实现静态的多态方法派发。
-
+```
 template<class Derived> class IPersonaBase {
     void speak_impl_() const { cout << "I'm unnamed." << endl; }
 public:                 // 静态类型转换！
@@ -859,10 +885,11 @@ int main() {
 // 输出
 // I'm alice bot #665764
 // I'm unnamed.
+```
 CRTP 的一个特点是支持按子类的类型返回子类。这个 SO 答案描述了 CRTP 的用途 https://stackoverflow.com/questions/4173254/what-is-the-curiously-recurring-template-pattern-crtp
 
 我们没有动态内省，但是静态的内省机制也已经足够，并且性能更强。通过 SFINAE (substitution failure is not an error)，用户在程序运行前就可以提前知道该使用什么重载来对付不同的类型了。比如，我们可以检测参数的类型有没有 serialize 方法
-
+```
 // 辅助函数，用来检测 T 是不是有 serialize() 方法
 template<class T> struct is_serializable {
 private:
@@ -880,9 +907,11 @@ template<typename T> void print_serialization(T &x) {
     else
         cout << "[not serializable]" << endl;
 }
+```
+
 constraints & concepts (c++20)
 对于模板参数的约束语法是 C++ 最重大的升级之一。有了 concept，用户大多数情况已经可以摆托 SFINAE 那简直不可读的代码，来定义类似于其他语言，但是性能更优的鸭子类型“接口”。
-
+```
 template<class T> concept ISerializable = requires(T v) {
     {v.serialize()} -> same_as<string>;
 };
@@ -899,6 +928,7 @@ template<class T> void print_file(T &&file) requires ISerializable<T> && IFileAl
     cout << file.serialize() << endl;
     file.close();
 }
+```
 我猜很快大家就会用到了！详细内容请参考 https://en.cppreference.com/w/cpp/language/constraints
 
 总结
