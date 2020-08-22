@@ -7,29 +7,33 @@ C++ 作为一个历史久远，功能丰(yong)富(zhong)而且标准与时俱进
 
 交换数组变量和下标 (c)
 如果你想获取数组元素，可以写 A[i] 或者是 i[A]：
-
+```
 int a[] { 1,2,3 };
 cout << a[1] << endl; // 2
 cout << 1[a] << endl; // 2
+```
 因为数组取下标相当于计算指针地址与偏移量，而 *(A+i) 和 *(i+A) 意思是相同的。
 
 合并字符串 (c)
+```
 const char *s =
     "welcome to my\n"
     "    home!\n"
     " enjoy life!\n";
+```
 最后 s 的值是 "welcome to my\n home!\n enjoy life!\n"，即以上三行合起来。这个语法源于 C，在 C 标准库宏中广泛出现。大多数常见语言也都有这个特性。
 
 逻辑运算关键字 (c++98)
 对于布尔值运算，C++ 也提供 and，or 这样的关键字，与 &&，|| 等作用相同：
-
+```
 bool b = not (false or true and false);
 int i = 8 xor 18;
 cout << b << endl; // 1
 cout << i << endl; // 26
+```
 双字符组 Digraph / 三字符组 Trigraph (c)
 过往部分地区的人们的键盘不方便打出大括弧之类的特殊符号，所以类似字符串的转义字符，这些语法符号也可以被另外常见的符号所代表
-
+```
 %:include <iostream>
 using namespace std;
 int main() <%
@@ -38,6 +42,7 @@ int main() <%
     // trigraph 写法，必须开启 -trigraphs 选项
     cout << a??(1??) << endl; // 2
 %>
+```
 是可以在现代编译器上编译的。 尽管不再有用，Digraph 仍然存在，不过它的兄弟 Trigraph 则很早就已经被废弃了。
 
 变量类型修饰符的顺序 (c)
@@ -48,15 +53,16 @@ long const int static long value = 2;
 
 uniform/aggregate initialization (c++11)
 C++98 中对象和内建类型的初始化方式五花八门，为了解决这个问题，C++11 引入了所谓的集合初始化：
-
+```
 int a {};     // 默认初始化，对于整形，初始化为 0，相当于 bzero
 int b {10};   // 初始化为 10
 int f = {}, g = {50}; // !
 double d {10};
 const char *s {"hello"};
 cout << f << ' '<< g << endl; // 0 50
+```
 这旨在使内建非对象的类型（基础类型和数组）都能像用户定义的对象一样以相同的语法被初始化。这样就相当于“像 int 这类的类型也有了 initializer_list 构造函数”，这给模板函数带来了很大的方便：
-
+```
 struct int_wrapper {
     int value;
     int_wrapper(int value_): value{value_} {} // <-
@@ -70,13 +76,14 @@ int main() {
     int i = factory<int>();
     int_wrapper w = factory<int_wrapper>();
 }
+```
 本文的第一个例子就用到了这个特性。统一和集合初始化的门道很多，建议大家查阅相关专业资料。
 
 int z(10.1); // OK. 强转为 10
 // int x{10.1}; // 报错
 函数返回 void (c)
 如果一个函数的返回类型是 void，那么你是可以用 return 返回它的：
-
+```
 void print_nums(int i) {
     if (i == 0)
         return;
@@ -85,20 +92,23 @@ void print_nums(int i) {
         return print_nums(i - 1); // <- return
     }
 }
+```
 这个特性我觉得大家应该都会知道，而且它在动态语言里也很常见。和上一条一样，其在模板中有应用。但是这个例子可以写得更激进：
-
+```
 void print_nums(int i) {
     return i == 0 ? void() : (cout << i << endl, print_nums(i - 1));
 }
+```
 表达式返回左值 (c++98)
 像函数或者表达式返回一个左值 (lvalue) 是 C++ 中最基础的操作，不过有时候也能玩出花儿来：
-
+```
 int divisibleby3 = 0, others = 0;
 for (int i = 0; i < 1000; ++i)
     (i % 3 == 0 ? divisibleby3 : others) += 1;
 cout << divisibleby3 << ' ' << others << endl; // 334 666
+```
 只要等号左边是左值，什么东西都可以放。哪怕你是有逗号运算符，还是 lambda。
-
+```
 int total = 0;
 ("loudly get the total count",
     ([&]() -> int& {
@@ -106,6 +116,7 @@ int total = 0;
         return total;
     })())
     = divisibleby3 + others; // total = 1000
+```
 当心被同事打死。
 
 整形字面量分隔符 (c++14)
@@ -115,7 +126,7 @@ int opcode = 0b0001'0011'1010;
 double e = 2.7'1828'1828'459045;
 函数域 try/catch (c++98)
 很少有人知道函数，构造函数，析构函数可以声明全局的异常捕获，就像这样：
-
+```
 int bad_func() { throw runtime_error("hahaha I crashed"); return 0; }
 
 struct try_struct {
@@ -135,18 +146,20 @@ int main() try {
 // 输出：
 // it is crashing! I can't stop.
 // program crashed. reason: hahaha I crashed
+```
 对于函数，在这里其作用就相当于在 main 下多写一层花括号。构造函数类似，但是在 catch 块中如果用户不抛出异常，编译器会一定隐式抛出原异常。 (https://en.cppreference.com/w/cpp/language/function-try-block)
 
 匿名类 (c++98)
 C 就支持匿名 (untagged) 类的定义，不过 C++ 更进一步，你可以在函数的任何地方定义匿名类，甚至循环变量的声明中，如以下反转数组的函数：
-
+```
 void reverse(int *arr, int size) {
     for (struct { int l, r; } i = { 0, size-1 }; i.l <= i.r; ++i.l, --i.r) {
         swap(arr[i.l], arr[i.r]);
     }
 }
+```
 匿名类也可以出现在 using 后（自行尝试）。有了 C++ 的 auto (c++14)，用户甚至可以返回真~匿名类：
-
+```
 auto divide(int x, int y) {
     struct  /* unnamed */ {
         int q, r;
@@ -164,11 +177,12 @@ int main() {
 }
 // 输出
 // quotient: 5 remainder: 1
+```
 除此还可以定义虚函数和构造析构函数。如果仔细想想，其原理和 lambda 差不多。
 
 if 语句中声明变量 (c++98)
 如下所示：
-
+```
 bool get_result() { return false; }
 
 int main() {
@@ -180,8 +194,9 @@ int main() {
 }
 // 输出
 // fail
+```
 在 while 语句中也可以使用这个结构。例子中 i 的生命周期限于这个 if/else 块中。其就相当于
-
+```
 int main() {
     {
         bool i = get_result();
@@ -191,10 +206,11 @@ int main() {
             cout << "fail" << endl;
     }
 }
+```
 能在作用域中声明变量，这和 C 程序中的类似技巧很不同。
 
 在 C++17 中，这个特性被加强了。不仅可以声明，还可以像 for 循环一样附加条件，和 golang 很像
-
+```
 int get_result() { return 17; }
 
 int main() {
@@ -205,9 +221,10 @@ int main() {
 }
 // 输出
 // fail. your age is too low: 17
+```
 结构化绑定 (c++17)
 C++17 的新语法使得我们可以在一个语句里解包变量，例如解包一个长度为 3 的数组：
-
+```
 int arr[3] { 1,2,9 };
 // 相当于把数组的值都拷贝到这三个变量里
 auto [cpy0, cpy1, cpy2] = arr;
@@ -217,8 +234,9 @@ cout << cpy0 << ' ' << arr[0] << endl; // 2 1
 auto &[ref0, ref1, ref2] = arr;
 ref0 = 2;
 cout << ref0 << ' ' << arr[0] << endl; // 2 2
+```
 这个特性可以解包标准库中的 std::tuple，也可以以成员声明顺序解包一个结构体：
-
+```
 auto get_data() {
     struct { int code; string header, body; }
         r { 200, "200 OK\r\nContent-Type: application/json", "{}" };
@@ -232,15 +250,17 @@ int main() {
     else
         throw runtime_error{"request failed"};
 }
+```
 在 C++17 之前，使用 std::tie 也可以实现相类似的效果：
-
+```
 int a = 1, b = 2, c = 3;
 // std::make_tuple 封包，std::tie 解包
 tie(a, b, c) = make_tuple(b, c, a);
 cout << a << b << c << endl; // 231
 placement new (c++98)
+```
 当对象被 new 的时候，大家都知道发生的过程是先调用 operator new 来分配内存，再调用构造函数。不过 new 拥有另一个重载，我们可以跳过分配内存的一步，也就是在我们指定的内存区域直接初始化对象。
-
+```
 struct vector2d {
     string name;
     long x, y;
@@ -268,9 +288,10 @@ int main() {
 // 输出
 // unnamed(3, 4)
 // unnamed(3, 4)
+```
 全局命名空间操作符 (c++98)
 可以使用 :: 来显式表示当前所表示的符号来自于全局命名空间，从而消除歧义：
-
+```
 namespace un {
     void func() { cout << "from namespace un\n"; }
 }
@@ -284,21 +305,24 @@ int main() {
 }
 // 输出
 // from global
+```
 匿名命名空间 (c++98)
 使用匿名的命名空间可以限制符号的可见性。当你写下这段代码时：
-
+```
 // test.cpp
 namespace {
     void local_function() {}
 }
+```
 它相当于这段代码：
-
+```
 // test.cpp
 namespace ___some_unique_name_test_cpp_XADDdadh876Sxb {}
 using namespace ___some_unique_name_test_cpp_XADDdadh876Sxb;
 namespace ___some_unique_name_test_cpp_XADDdadh876Sxb {
     void local_function() {}
 }
+```
 也就是一个独一无二，对于当前编译单元的命名空间被创建。因为这个命名空间只在这个文件中引用，故而用户只可以在当前文件 (test.cpp) 中引用 local_function。这样做就避免了不同文件中可能出现的名称冲突。其效果与
 
 // test.cpp
@@ -307,7 +331,7 @@ static void local_function() {}
 
 “内联” (inline) 命名空间 (c++11)
 如果不是库作者，可能会对这个特性十分惊讶，内联这个关键字的含义已经和 static 一样要起飞了。如果一个命名空间被内联，那么它会被给予优先级。
-
+```
 namespace un {
     inline namespace v2 {
         void func() { cout << "good func.\n"; }
@@ -326,9 +350,10 @@ int main() {
 // good func.
 // good func.
 // old func. use v2 instead.
+```
 自定义字面量 (c++11)
 自从 C++11，用户可以自己重载 operator"" 来以字面量的形式初始化对象：
-
+```
 long double constexpr operator""_deg (long double deg) {
     return deg * 3.14159265358979323846264L / 180;
 }
@@ -336,9 +361,10 @@ long double constexpr operator""_deg (long double deg) {
 int main() {
     long double r = 270.0_deg; // r = 4.71239...
 }
+```
 重载 , 运算符 (c++98)
 没想到吧，逗号也能重载！这个例子受 boost/assign/std/vector.hpp 的启发，可以简便地向标准库的 vector 中一个个地插入元素：
-
+```
 template<class VT>
 struct vector_inserter {
     VT &vec;
@@ -363,13 +389,14 @@ int main() {
     v += 1,2,3,4,5,6,7;
     cout << v.size() << endl; // 7
 }
+```
 逗号操作符还有一处另类的地方是当操作数的类型为 void 时，没有重载可以改变它的行为。这可以（在c++98）用来检测一个表达式是否为 void: https://stackoverflow.com/questions/5602112/when-to-overload-the-comma-operator#answer-7033345
 
 除此之外大多数重载 , 的行为都不是什么好行为，知道能重载就好，想用的话最好三思！
 
 类成员声明顺序 (c++98)
 类成员在使用时不需要关心它们的声明顺序，所以我们可以先使用变量再定义。所以有时为了方便完全可以把所有的代码写在一个类里。
-
+```
 struct Program {
     vector<string> args;
     void Main() {
@@ -382,6 +409,7 @@ struct Program {
 int main(int argc, char **argv) {
     Program{vector<string>(argv, argv+argc)}.Main();
 }
+```
 类函数引用修饰符 (c++11)
 不同于 const，noexcept 这样仅修饰类方法本身行为的修饰符，& 和 && 修饰符会根据 *this 是左值还是右值引用来选择合适的重载。
 

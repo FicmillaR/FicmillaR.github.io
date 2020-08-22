@@ -22,7 +22,7 @@
   [1.会被打的C++技巧](cpp_1.md)
    
   
-### Awesome blogs/gits for object detection:
+### Awesome blogs/gits COLLECTION for object detection:
 1. [handong1587](https://handong1587.github.io/deep_learning/2015/10/09/object-detection.html)
 > paper collection for Object Detection,  
 > Tricks for Object Detection,  
