@@ -15,7 +15,7 @@
 
   [3.普通RNN的2个trick（更新中）](rnn_trick1.md)
 
-  [4.YOLO系列v1~v5(更新中)]()    
+  [4.YOLO玩嘴系列v1~v5(更新中)]()    
   
 ### Sloth is good, keep FORK make you rich:
 
@@ -49,9 +49,9 @@
 都是未完成的猜想
 
 1. "更强大的标签"
-> 作为"迁移学习"的第一个老师，我们label的方式隐含着我们对任务的认知
-> 我们可以在类别中设置一个trash can容纳所有不喜欢的类别吗？
+> "迁移学习"的第一个老师  
+> 我们可以在类别中设置一个trash can吗？
   
 2. Image Super-Resolution
-> "拜尔阵列"
-> super-resolution 从零开始
+> "拜尔阵列"  
+> super-resolution 从零开始  
