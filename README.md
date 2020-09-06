@@ -15,14 +15,13 @@
 
   [3.普通RNN的2个trick（更新中）](rnn_trick1.md)
 
-  [4.YOLO玩嘴系列v1~v5(更新中)]()    
   
 ### Sloth is good, keep FORK make you rich:
 
   [1.会被打的C++技巧](cpp_1.md)
    
   
-### Awesome blogs/gits COLLECTION for object detection:
+### object detection zoo:
 1. [handong1587](https://handong1587.github.io/deep_learning/2015/10/09/object-detection.html)
 > paper collection for Object Detection,  
 > Tricks for Object Detection,  
@@ -44,6 +43,10 @@
 > 报告内容详见B站
  
  
+### GAN zoo
+1. [the-gan-zoo](https://github.com/hindupuravinash/the-gan-zoo)
+>  new GAN papers every week
+  
  
 ### 脑洞系列：
 都是未完成的猜想
@@ -55,3 +58,5 @@
 2. Image Super-Resolution
 > "拜尔阵列"  
 > super-resolution 从零开始  
+
+3. YOLO玩嘴系列v1~v5 
