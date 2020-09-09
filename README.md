@@ -52,9 +52,21 @@
 > [b站视频](https://space.bilibili.com/511221970/video)
 > [大佬博客](http://bzhou.ie.cuhk.edu.hk/)
   
- 
+
+
+### tricks from kaggle
+#### global-wheat-detection rank3
+1. Weighted-Boxes-Fusion 加权框融合
+> [api](https://github.com/FicmillaR/Weighted-Boxes-Fusion)
+> [arxiv](https://arxiv.org/abs/1910.13302)
+
+
+2. [伪标签技术pseudo-labaling](https://cloud.tencent.com/developer/article/1656245)
+
+
+
 ### 脑洞系列：
-都是未完成的猜想
+都是未完成的大坑:)
 
 1. "更强大的标签"
 > "迁移学习"的第一个老师  
