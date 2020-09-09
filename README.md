@@ -7,7 +7,7 @@
 4. 直击灵魂
 
 
-### A blog a week keep doctor away：
+### A blog a week keep doctor's degree away：
 
   [1.label encoding&one-hot encoding的几种方法](训练前1.md)
 
@@ -40,12 +40,17 @@
  
 5. [siffai](http://sffai.com/)
 > 人工智能前沿学生论坛。自2018年9月16日，每周一期  
-> 报告内容详见B站
+> 报告内容详见B站搜索"siffai"
  
  
-### GAN zoo
+### GAN/RL 勃♂弈论 collection
 1. [the-gan-zoo](https://github.com/hindupuravinash/the-gan-zoo)
->  new GAN papers every week
+> GAN papers till 2018
+
+2. [《强化学习纲要》10讲](https://github.com/zhoubolei/introRL)
+> **周博磊大佬**的强化学习的入门教学
+> [b站视频](https://space.bilibili.com/511221970/video)
+> [大佬博客](http://bzhou.ie.cuhk.edu.hk/)
   
  
 ### 脑洞系列：
@@ -59,4 +64,8 @@
 > "拜尔阵列"  
 > super-resolution 从零开始  
 
-3. YOLO玩嘴系列v1~v5 
+3. YOLOv1~v5用嘴说系列 
+
+4. two-stage用嘴说系列
+
+5. SJ kaggle的奇技淫巧总结
