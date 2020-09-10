@@ -63,7 +63,8 @@
 > [arxiv](https://arxiv.org/abs/1910.13302)
 
 
-2. [伪标签技术pseudo-labaling](https://cloud.tencent.com/developer/article/1656245)
+2. pseudo-labaling 伪标签技术
+> [通俗的中文解释](https://cloud.tencent.com/developer/article/1656245)
 
 
 
@@ -73,6 +74,7 @@
 1. "更强大的标签"
 > "迁移学习"的第一个老师  
 > 我们可以在类别中设置一个trash can吗？
+> 为未来预留的标签空位
   
 2. Image Super-Resolution
 > "拜尔阵列"  
