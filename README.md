@@ -15,6 +15,8 @@
 
   [3.普通RNN的2个trick（更新中）](rnn_trick1.md)
 
+  [4.Pandas I/O 大坑](pandas1.md)
+
   
 ### Sloth is good, keep FORK make you rich:
 
