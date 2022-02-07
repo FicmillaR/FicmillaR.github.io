@@ -6,6 +6,7 @@
 3. 菜鸟爬坡
 4. 直击灵魂
 
+
 # ?~2021
 ### A blog a week keep doctor's degree away：
 
@@ -47,16 +48,13 @@
 
 ### tricks from kaggle
 #### global-wheat-detection rank3
-1. Weighted-Boxes-Fusion 加权框融合
-> [api](https://github.com/FicmillaR/Weighted-Boxes-Fusion)
-> [arxiv](https://arxiv.org/abs/1910.13302)
+1. Weighted-Boxes-Fusion 加权框融合[api](https://github.com/FicmillaR/Weighted-Boxes-Fusion), [arxiv](https://arxiv.org/abs/1910.13302)
 
 
-2. pseudo-labaling 伪标签技术
-> [通俗的中文解释](https://cloud.tencent.com/developer/article/1656245)
-
-
-
+2. pseudo-labaling 伪标签技术 [通俗的中文解释](https://cloud.tencent.com/developer/article/1656245)
+ 
+ 
+ 
 # 2022 年度
 ## target：
 1. 每周都有产出，哪怕是直面基佬内心的小作文
