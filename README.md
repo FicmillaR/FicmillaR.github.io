@@ -7,6 +7,7 @@
 4. 直击灵魂
 
 
+# ?~2021
 ### A blog a week keep doctor's degree away：
 
   [1.label encoding&one-hot encoding的几种方法](训练前1.md)
