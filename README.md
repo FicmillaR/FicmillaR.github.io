@@ -65,3 +65,7 @@
 
 ## 综合1
 1. Feb 2022 »[1.22年开篇想说的话](general_1/0207_yearSum.md)
+2. Mar 2022 »[2.如果必须面对战争，我们至少可以做什么](general_1/0310_prepare_for_war.md)
+
+## c++
+1. Mar 2022 »[1.gdb魔术评赏](c++/0314_gdbwizard.md)
