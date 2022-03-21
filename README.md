@@ -67,5 +67,9 @@
 1. Feb 2022 »[1.22年开篇想说的话](general_1/0207_yearSum.md)
 2. Mar 2022 »[2.如果必须面对战争，我们至少可以做什么](general_1/0310_prepare_for_war.md)
 
-## c++
-1. Mar 2022 »[1.gdb魔术评赏](c++/0314_gdbwizard.md)
+## 编程通用
+1. Mar 2022 »[1.gdb魔术评赏](general_code/0314_gdbwizard.md)
+
+
+## 欠债还钱
+1. Mar 2022 »[1.单身汉：OS-1](rookie_bachelor\os_1.md)
