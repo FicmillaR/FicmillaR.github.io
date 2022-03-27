@@ -71,5 +71,5 @@
 1. Mar 2022 »[1.gdb魔术评赏](general_code/0314_gdbwizard.md)
 
 
-## 欠债还钱
-1. Mar 2022 »[1.单身汉：OS-1](rookie_bachelor\os_1.md)
+## 欠债
+1. Mar 2022 »[1.OS-1](rookie_bachelor\os_1.md)
