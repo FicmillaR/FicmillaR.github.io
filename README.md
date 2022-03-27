@@ -72,4 +72,4 @@
 
 
 ## 欠债
-1. Mar 2022 »[1.OS-1](rookie_bachelor\os_1.md)
+1. Mar 2022 »[1.OS-1](rookie_bachelor/os_1.md)
