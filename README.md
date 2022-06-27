@@ -69,7 +69,13 @@
 
 ## 编程通用
 1. Mar 2022 »[1.gdb魔术评赏](general_code/0314_gdbwizard.md)
+2. Mar 2022 »[2.为什么我的md变成乱码了?](general_code/0329_md_to_garbled.md)
 
+## C++
+1. Mar 2022 »[1.const char传值错误](cpp/0330_const_char_err.md)
+2. Apr 2022 »[2.一种全新的cpp风格](cpp/0404_new_cpp_style_01.md)
+3. Jun 2022 »[4.const char传值错误](cpp/0627_class_const_member.md)
 
 ## 欠债
 1. Mar 2022 »[1.OS-1](rookie_bachelor/os_1.md)
+2. Apr 2022 »[2.OS-2](rookie_bachelor/os_2.md)
